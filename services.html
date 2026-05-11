@@ -762,7 +762,7 @@
         <span class="eyebrow">Signature service</span>
         <h3>Painless Root Canal — done in <em>one</em> sitting.</h3>
         <p>Microscope-assisted single-visit endodontics. Most patients leave the chair with the procedure complete and sealed — no second appointment, no lingering pain.</p>
-        <a class="btn btn-gold btn-arrow" href="contact.html">Book root canal consult</a>
+        <a class="btn btn-gold btn-arrow" href="services/root-canal-treatment.html">Book root canal consult</a>
       </div>
 
       <article class="svc-card">
@@ -997,7 +997,45 @@
 </script>
 <script>
   mountChrome('services');
-  // chip filter implementation
+
+  // Service page link mappings
+  var svcLinks = {
+    '01': 'services/dental-implants.html',
+    '02': 'services/cosmetic-dentistry.html',
+    '03': 'services/full-mouth-reconstruction.html',
+    '04': 'services/invisible-braces.html',
+    '05': 'services/facial-pain-cure.html',
+    '06': 'services/cyst-tumor-removal.html',
+    '07': 'services/teeth-whitening.html',
+    '08': 'services/laser-dentistry.html',
+    '09': 'services/digital-smile-designing.html',
+    '10': 'services/surgical-tooth-extraction.html',
+    '11': 'services/scar-revision.html',
+    '12': 'services/teeth-cleaning-polishing.html',
+    '13': 'services/dentures.html',
+    '14': 'services/veneers-crowns.html',
+    '15': 'services/endodontic-surgery.html',
+    '16': 'services/tmj-disorders.html',
+    '17': 'services/prp-prf-therapy.html',
+    '18': 'services/root-canal-treatment.html'
+  };
+
+  // Make service cards clickable
+  document.querySelectorAll('.svc-card').forEach(function(card) {
+    var numEl = card.querySelector('.num');
+    if (numEl) {
+      var num = numEl.textContent.replace(/[^0-9]/g, '').padStart(2, '0');
+      var link = svcLinks[num];
+      if (link) {
+        card.style.cursor = 'pointer';
+        card.addEventListener('click', function() {
+          window.location.href = link;
+        });
+      }
+    }
+  });
+
+  // Chip filter implementation
   document.querySelectorAll('.chip').forEach(c => {
     c.addEventListener('click', () => {
       document.querySelectorAll('.chip').forEach(x => x.classList.remove('active'));
